@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solid_software_test_project/color_handler.dart';
+import 'package:solid_software_test_project/main_container_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,58 +13,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: Colors.black,
+        ),
       ),
       home: const MyHomePage(title: 'Solid Software Test Project'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  Color _backgroundColor = Colors.white;
-
-  void _setBackgroundColor() {
-    setState(() {
-      _backgroundColor = ColorHandler.generateColor();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: GestureDetector(
-        child: Container(
-          color: _backgroundColor,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Hey there',
-                  style: TextStyle(
-                    color: ColorHandler.mixComponents(_backgroundColor),
-                    fontSize: 27,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ],
-            ),
-          ),
+        appBar: AppBar(
+          title: Text(title),
         ),
-        onTap: _setBackgroundColor,
-      ),
-    );
+        body: const MainContainer());
   }
 }
