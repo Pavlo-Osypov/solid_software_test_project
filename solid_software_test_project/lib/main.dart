@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solid_software_test_project/color_handler.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,11 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Solid Software Test Project',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Solid Software Test Project'),
     );
   }
 }
@@ -29,11 +31,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  Color _backgroundColor = Colors.white;
 
-  void _incrementCounter() {
+  void _setBackgroundColor() {
     setState(() {
-      _counter++;
+      _backgroundColor = ColorHandler.generateColor();
     });
   }
 
@@ -43,22 +45,25 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      body: Container(
+        color: _backgroundColor,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Hey there!',
+                style: TextStyle(
+                  color: ColorHandler.mixComponents(_backgroundColor),
+                  fontSize: 25,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _setBackgroundColor,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
