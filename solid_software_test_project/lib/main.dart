@@ -12,9 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Solid Software Test Project',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
       home: const MyHomePage(title: 'Solid Software Test Project'),
     );
@@ -45,27 +44,26 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(
-        color: _backgroundColor,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Hey there!',
-                style: TextStyle(
-                  color: ColorHandler.mixComponents(_backgroundColor),
-                  fontSize: 25,
+      body: GestureDetector(
+        child: Container(
+          color: _backgroundColor,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Hey there',
+                  style: TextStyle(
+                    color: ColorHandler.mixComponents(_backgroundColor),
+                    fontSize: 27,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _setBackgroundColor,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onTap: _setBackgroundColor,
       ),
     );
   }
