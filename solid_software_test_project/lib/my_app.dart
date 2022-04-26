@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:solid_software_test_project/color_handler.dart';
 import 'package:solid_software_test_project/constants.dart';
 
-//ignore: public_member_api_docs
+/// Input point
 class MyApp extends StatelessWidget {
-  // ignore: public_member_api_docs
+  /// Constructor
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -19,12 +19,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// ignore: public_member_api_docs
+/// Main page
 class MyHomePage extends StatefulWidget {
   /// Title on AppBar
   final String title;
 
-  // ignore: public_member_api_docs
+  /// Constructor
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
