@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:solid_software_test_project/color_handler_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:solid_software_test_project/color_handler_provider.dart';
+import 'package:solid_software_test_project/constants.dart';
 
+///
 class MainContainer extends StatelessWidget {
-  MainContainer({Key? key}) : super(key: key);
-
   // We could not set it here, but pass it as parameter to constructor
   // and make this widget more configurable
   final ColorHandlerProvider _colorProvider = ColorHandlerProvider.withColors(
@@ -12,11 +12,15 @@ class MainContainer extends StatelessWidget {
     Colors.yellow,
   );
 
+  /// Consrtuctor
+  MainContainer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ColorHandlerProvider>.value(
       value: _colorProvider,
       child: GestureDetector(
+        onTap: _colorProvider.changeColor,
         child: Consumer<ColorHandlerProvider>(
           builder: (
             BuildContext context,
@@ -33,7 +37,7 @@ class MainContainer extends StatelessWidget {
                       'Hey there',
                       style: TextStyle(
                         color: value.textColor,
-                        fontSize: 27,
+                        fontSize: helloThereFontSize,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
@@ -43,7 +47,6 @@ class MainContainer extends StatelessWidget {
             );
           },
         ),
-        onTap: _colorProvider.changeColor,
       ),
     );
   }
